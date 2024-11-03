@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1yxypa8bulx8"]
+
+[ext_resource type="PackedScene" uid="uid://ufq7ji2vrpa5" path="res://paddle.tscn" id="1_8tbnk"]
+[ext_resource type="Script" path="res://paddle1.gd" id="2_xwq6r"]
+[ext_resource type="Script" path="res://paddle2.gd" id="3_lyld1"]
+[ext_resource type="Script" path="res://Ball.gd" id="4_nwtf8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28lt8"]
+size = Vector2(738, 20)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5cja5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1y5qf"]
+radius = 7.07107
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Paddle1" parent="." instance=ExtResource("1_8tbnk")]
+position = Vector2(50, 160)
+script = ExtResource("2_xwq6r")
+
+[node name="Paddle2" parent="." instance=ExtResource("1_8tbnk")]
+position = Vector2(590, 160)
+script = ExtResource("3_lyld1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(336, -1)
+shape = SubResource("RectangleShape2D_28lt8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(341, 321)
+shape = SubResource("RectangleShape2D_28lt8")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+script = ExtResource("4_nwtf8")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ball"]
+position = Vector2(320, 160)
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_5cja5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+position = Vector2(320, 160)
+shape = SubResource("CircleShape2D_1y5qf")
